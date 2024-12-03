@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -42,7 +42,7 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(({ className, varian
               ? 'ul'
               : variant || 'p')) as keyof JSX.IntrinsicElements;
     const classes = cn(typographyVariants({ variant, size }), className);
-    return <Comp className={classes} ref={ref} {...props} />;
+    return React.createElement(Comp, { className: classes, ref, ...props });
 });
 Typography.displayName = 'Typography';
 
