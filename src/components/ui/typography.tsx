@@ -42,6 +42,7 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(({ className, varian
               ? 'ul'
               : variant || 'p')) as keyof JSX.IntrinsicElements;
     const classes = cn(typographyVariants({ variant, size }), className);
+
     return React.createElement(Comp, { className: classes, ref, ...props });
 });
 Typography.displayName = 'Typography';
