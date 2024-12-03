@@ -57,7 +57,8 @@ export default [
             'tailwindcss/no-unnecessary-arbitrary-value': 'off',
             'tailwindcss/classnames-order': 'off',
             'import/named': 'off',
-            'import/no-named-as-default-member': 'off'
+            'import/no-named-as-default-member': 'off',
+            'newline-before-return': 'off'
         }
     },
     // ! ===================== DISCLAIMER =====================
