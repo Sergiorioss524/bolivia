@@ -11,9 +11,12 @@ import { ThumbsUp } from 'lucide-react';
 interface ProblemCardProps {
     id: number;
     title: string;
+    causes: string[];
+    culpables: string[];
+    solutions: string[];
 }
 
-export default function ProblemCard({ id, title }: ProblemCardProps) {
+export default function ProblemCard({ id, title, causes, culpables, solutions }: ProblemCardProps) {
     const [votes, setVotes] = useState(0);
     const [showDetails, setShowDetails] = useState(false);
 
@@ -37,7 +40,7 @@ export default function ProblemCard({ id, title }: ProblemCardProps) {
                             {title}
                         </Typography>
                     </div>
-                    <Button variant='outline' size='sm' onClick={handleVote}>
+                    <Button variant='outline' size='sm' onClick={handleVote} aria-label='Vote for this problem'>
                         <ThumbsUp className='mr-2 h-4 w-4' />
                         {votes}
                     </Button>
@@ -52,15 +55,27 @@ export default function ProblemCard({ id, title }: ProblemCardProps) {
                         <Typography variant='h4' className='font-semibold'>
                             Causas:
                         </Typography>
-                        <Typography>Información sobre las causas del problema...</Typography>
+                        {causes.length > 0 ? (
+                            causes.map((cause, index) => <Typography key={index}>- {cause}</Typography>)
+                        ) : (
+                            <Typography>No hay causas disponibles.</Typography>
+                        )}
                         <Typography variant='h4' className='mt-2 font-semibold'>
                             Culpables:
                         </Typography>
-                        <Typography>Información sobre los responsables...</Typography>
+                        {culpables.length > 0 ? (
+                            culpables.map((culpable, index) => <Typography key={index}>- {culpable}</Typography>)
+                        ) : (
+                            <Typography>No hay culpables disponibles.</Typography>
+                        )}
                         <Typography variant='h4' className='mt-2 font-semibold'>
                             Posibles soluciones:
                         </Typography>
-                        <Typography>Propuestas de soluciones al problema...</Typography>
+                        {solutions.length > 0 ? (
+                            solutions.map((solution, index) => <Typography key={index}>- {solution}</Typography>)
+                        ) : (
+                            <Typography>No hay soluciones disponibles.</Typography>
+                        )}
                     </div>
                 )}
             </CardContent>
