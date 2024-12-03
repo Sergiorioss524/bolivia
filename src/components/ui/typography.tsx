@@ -1,3 +1,4 @@
+/* eslint-disable newline-before-return */
 import React, { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
