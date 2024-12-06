@@ -13,7 +13,7 @@ export default function Header() {
                 LOS 25 PROBLEMAS MAS GRANDES DE BOLIVIA
             </Typography>
             <Typography className='mt-4 text-muted-foreground'>
-                *Haz clic en cualquiera de las opciones para conocer las causas, los culpables y posibles soluciones.
+                *Haz clic en cualquiera de las opciones para conocer las causas, los pendejos y posibles soluciones.
                 <br />
                 *Vota por los que crees que son los problemas más grandes en el país.
                 <br />
