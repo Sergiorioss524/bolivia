@@ -5,7 +5,9 @@ import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
 
+// Import the AuthProvider
 import '@/app/globals.css';
+import { AuthProvider } from '@/lib/AuthProvider';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -25,11 +27,12 @@ export const metadata: Metadata = {
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
-        // ? https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
-        // ? https://react.dev/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors
         <html suppressHydrationWarning lang='en'>
             <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}>
-                <ThemeProvider attribute='class'>{children}</ThemeProvider>
+                {/* Wrap everything with AuthProvider */}
+                <AuthProvider>
+                    <ThemeProvider attribute='class'>{children}</ThemeProvider>
+                </AuthProvider>
             </body>
         </html>
     );
