@@ -1,53 +1,68 @@
-import Link from "next/link";
+import BoliviaMapAnimated from "./BoliviaMapAnimated"
+import BolivianoUsdGraphSection from "./BolivianoUsdGraphSection"
+import DashboardSection from "./components/DashboardSection"
 
-import { LatestPost } from "~/app/_components/post";
-import { api, HydrateClient } from "~/trpc/server";
-
-export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
-
-  void api.post.getLatest.prefetch();
-
+export default function Home() {
   return (
-    <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      <div className="container mx-auto px-6 py-16">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <h1 className="text-6xl md:text-7xl font-light tracking-tight text-gray-900 mb-4">
+            Bolivia
+            <span className="block text-gray-600 font-extralight">en Números</span>
           </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello ? hello.greeting : "Loading tRPC query..."}
-            </p>
+          <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Datos económicos y sociales de Bolivia visualizados con elegancia y precisión
+          </p>
+        </div>
+
+        {/* Main Content */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+          {/* Left: Election Countdown */}
+          <div className="flex flex-col items-center lg:items-start space-y-8">
+            <div className="relative">
+              <BoliviaMapAnimated />
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full opacity-20 blur-xl"></div>
+            </div>
+
+            <div className="text-center lg:text-left">
+              <h2 className="text-2xl font-light text-gray-800 mb-3">Cuenta Regresiva Electoral</h2>
+              <p className="text-gray-600 leading-relaxed max-w-md">
+                Sigue el tiempo restante hasta las elecciones generales de Bolivia 2025 y mantente informado sobre el
+                proceso democrático.
+              </p>
+            </div>
           </div>
 
-          <LatestPost />
+          {/* Right: USD Graph */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl opacity-30 blur-3xl transform rotate-1"></div>
+            <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 shadow-xl shadow-gray-900/5 p-8">
+              <BolivianoUsdGraphSection />
+            </div>
+          </div>
         </div>
-      </main>
-    </HydrateClient>
-  );
+
+        {/* Stats Section */}
+        <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="text-center p-8 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-200/30">
+            <div className="text-3xl font-light text-gray-900 mb-2">11.8M</div>
+            <div className="text-sm text-gray-600 uppercase tracking-wide">Población</div>
+          </div>
+          <div className="text-center p-8 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-200/30">
+            <div className="text-3xl font-light text-gray-900 mb-2">1.099M</div>
+            <div className="text-sm text-gray-600 uppercase tracking-wide">km² Superficie</div>
+          </div>
+          <div className="text-center p-8 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-200/30">
+            <div className="text-3xl font-light text-gray-900 mb-2">La Paz</div>
+            <div className="text-sm text-gray-600 uppercase tracking-wide">Capital</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Dashboard Section */}
+      <DashboardSection />
+    </main>
+  )
 }
